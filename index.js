@@ -4,11 +4,19 @@ const ReactTestRenderer = require('react-test-renderer');
 const Clock = require('./components/Clock');
 const elementToString = require('./elementToString');
 
+/*
+equivalent to:
+  <div>
+    <h1>Clock</h1>
+    <Clock />
+  </div>
+*/
+const root = React.createElement('div', null,
+  React.createElement('h1', null, 'Clock'),
+  React.createElement(Clock, null, null)
+);
 
-const clock = ReactTestRenderer.create(React.createElement('div', null, [
-  React.createElement('h1', { key: 0 }, 'Clock'),
-  React.createElement(Clock, { key: 1 }, null),
-]));
+const clock = ReactTestRenderer.create(root);
 
 const app = express();
 
